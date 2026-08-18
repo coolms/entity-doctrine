@@ -1,0 +1,63 @@
+{
+    "name": "coolms/entity-doctrine",
+    "description": "Doctrine ORM/DBAL adapters for coolms/entity: the extras mapping driver and validation listener, generated virtual columns, per-platform schema and upsert managers, and tree operators",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "coolms",
+        "entity",
+        "doctrine",
+        "orm",
+        "dbal",
+        "extras"
+    ],
+    "authors": [
+        {
+            "name": "Dmitry Popov"
+        }
+    ],
+    "require": {
+        "php": "^8.5",
+        "coolms/core": "^1.0",
+        "coolms/entity": "^1.0",
+        "coolms/rql": "^1.0",
+        "doctrine/dbal": "^4.0",
+        "doctrine/doctrine-bundle": "^3.2",
+        "doctrine/orm": "^3.0",
+        "doctrine/persistence": "^4.0",
+        "psr/cache": "^3.0",
+        "psr/log": "^3.0",
+        "symfony/cache": "^8.0",
+        "symfony/console": "^8.0",
+        "symfony/doctrine-bridge": "^8.0",
+        "symfony/event-dispatcher": "^8.0",
+        "symfony/http-kernel": "^8.0",
+        "symfony/messenger": "^8.0",
+        "symfony/security-bundle": "^8.0",
+        "symfony/uid": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.5"
+    },
+    "provide": {
+        "coolms/entity-persistence-implementation": "1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CoolMS\\Entity\\Doctrine\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CoolMS\\Entity\\Doctrine\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
