@@ -124,7 +124,7 @@ final readonly class DoctrineEntitySchemaProvider implements EntitySchemaProvide
 
     private function extractModule(string $className): string
     {
-        // App\{Module}\Domain\... yields {Module}
+        // the second namespace segment is the module name
         $parts = explode('\\', $className);
 
         return $parts[1] ?? 'Unknown';
