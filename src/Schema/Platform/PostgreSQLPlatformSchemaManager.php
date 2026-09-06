@@ -37,7 +37,7 @@ final class PostgreSQLPlatformSchemaManager extends AbstractPlatformSchemaManage
      * A STORED generated column's expression must be IMMUTABLE, and PostgreSQL
      * has no immutable way to parse text into a date or timestamp: every route
      * reads the `DateStyle` GUC, so all of them are merely STABLE. Measured
-     * against PostgreSQL 16 on a scratch table — all four rejected with
+     * against PostgreSQL 16 on a scratch table -- all four rejected with
      * `generation expression is not immutable`:
      *
      *     CAST(extras->>'d' AS TIMESTAMP)          REJECTED
@@ -46,13 +46,13 @@ final class PostgreSQLPlatformSchemaManager extends AbstractPlatformSchemaManage
      *     to_timestamp(extras->>'d', 'YYYY-MM-DD') REJECTED
      *
      * while `INTEGER`, `BOOLEAN`, `NUMERIC(19,4)` and `DOUBLE PRECISION` were
-     * all accepted. So this is not a preference — declaring TIMESTAMP makes the
+     * all accepted. So this is not a preference -- declaring TIMESTAMP makes the
      * DDL fail outright, which is how it was found: the schema sync that fixed
      * the boolean columns reported `publishDate: generation expression is not
      * immutable` and rolled its rebuild back.
      *
      * TEXT is survivable rather than merely a defeat, because `extras` holds
-     * ISO-8601 and ISO-8601 sorts chronologically as text — that ordering
+     * ISO-8601 and ISO-8601 sorts chronologically as text -- that ordering
      * property is the reason the format was chosen. What it does NOT give is
      * typed range filtering: an RQL comparison on a date field is a string
      * comparison, so it is only correct for values of uniform ISO precision.
@@ -63,7 +63,7 @@ final class PostgreSQLPlatformSchemaManager extends AbstractPlatformSchemaManage
      * denied, so a `DateStyle` change would silently invalidate both the stored
      * values and any index built over them.
      *
-     * Only PostgreSQL is constrained this way. MySQL and MariaDB keep DATETIME —
+     * Only PostgreSQL is constrained this way. MySQL and MariaDB keep DATETIME --
      * their generated columns require determinism, not immutability.
      */
     public function mapTypeToSql(string $phpType): string
@@ -78,7 +78,7 @@ final class PostgreSQLPlatformSchemaManager extends AbstractPlatformSchemaManage
     }
 
     /**
-     * PostgreSQL's `datetime` is TEXT — see {@see mapTypeToSql()} — so a
+     * PostgreSQL's `datetime` is TEXT -- see {@see mapTypeToSql()} -- so a
      * timestamp field's column introspects as `text` and the inherited answer,
      * which expects `datetime`, would call every date field diverged and
      * rebuild its column on every save. That rebuild then fails, because the

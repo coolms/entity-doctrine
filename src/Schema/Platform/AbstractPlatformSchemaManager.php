@@ -35,7 +35,7 @@ abstract class AbstractPlatformSchemaManager implements PlatformSchemaManagerInt
      * text-mapped types rather than each platform restating the same pair.
      *
      * A platform whose `mapTypeToSql()` routes a type somewhere unusual must
-     * override — PostgreSQL does, because its `datetime` is TEXT.
+     * override -- PostgreSQL does, because its `datetime` is TEXT.
      */
     public function matchesDeclaredType(string $introspectedType, string $phpType): bool
     {
