@@ -13,7 +13,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Phase X-2.5b -- virtual field applier renders SQL expression
+ * Virtual field applier renders SQL expression
  * fragments (X strategy) and dispatches to translator callbacks
  * (Y strategy), honouring the descriptor's operator whitelist.
  */

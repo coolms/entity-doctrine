@@ -12,7 +12,7 @@ use Doctrine\ORM\QueryBuilder;
 use InvalidArgumentException;
 
 /**
- * Phase X-2.5b -- applies a single RQL filter node to a Doctrine
+ * Applies a single RQL filter node to a Doctrine
  * QueryBuilder when the targeted field is a virtual field.
  *
  * Two strategies, selected by the descriptor:

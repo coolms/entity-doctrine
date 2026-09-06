@@ -18,7 +18,7 @@ use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Phase X-2.5b -- preprocessor splits virtual filters off, applies
+ * Preprocessor splits virtual filters off, applies
  * them via the applier, and hands the trimmed RqlQuery back so the
  * caller can pass it to `DoctrineRqlVisitor::applyFilters` next.
  */
