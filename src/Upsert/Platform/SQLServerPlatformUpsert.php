@@ -16,7 +16,13 @@ namespace CoolMS\Entity\Doctrine\Upsert\Platform;
  * (insert + update); for the insert-if-missing case the caller should
  * treat it as advisory.
  *
- * UNTESTED IN CI: the project ships against PostgreSQL only.
+ * NOT EXERCISED AGAINST A LIVE SERVER, which is narrower than it used to
+ * say. The generated SQL IS asserted in CI, string by string, by
+ * `PlatformUpsertSqlTest`. What no test covers is running it against a real
+ * SQL Server -- so a syntax error would be caught here and a semantic
+ * difference would not.
+ *
+ * The project itself ships against PostgreSQL.
  */
 final class SQLServerPlatformUpsert extends AbstractPlatformUpsert
 {

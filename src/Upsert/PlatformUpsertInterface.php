@@ -23,10 +23,12 @@ namespace CoolMS\Entity\Doctrine\Upsert;
  * quoter at SQL-build time. Values are passed as parameter bindings
  * (named placeholders), never interpolated into the SQL string.
  *
- * MSSQL + Oracle implementations are wired but UNTESTED IN CI -- the
- * project ships against PostgreSQL only; the MERGE templates are
- * present so a downstream consumer can flip the connection driver
- * without rewriting repositories.
+ * Every implementation's generated SQL is asserted in CI by
+ * `PlatformUpsertSqlTest`; none of them but PostgreSQL is executed against a
+ * live server, because the project ships against PostgreSQL. The MERGE
+ * templates are present so a downstream consumer can flip the connection
+ * driver without rewriting repositories -- and they are the party who can
+ * report a semantic difference, which a string assertion cannot see.
  */
 interface PlatformUpsertInterface
 {

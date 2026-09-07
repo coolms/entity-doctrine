@@ -14,7 +14,8 @@ namespace CoolMS\Entity\Doctrine\Upsert\Platform;
  * MariaDBPlatform extends MySQLPlatform in Doctrine DBAL 4.x, so the
  * factory MUST test MariaDB first.
  *
- * UNTESTED IN CI -- see the parent class docblock.
+ * Not exercised against a live server -- see the parent class docblock. The
+ * generated SQL is asserted in CI.
  */
 final class MariaDBPlatformUpsert extends MySQLPlatformUpsert
 {
