@@ -10,6 +10,17 @@ major number means here.
 history when this file was created. Every entry after that is written in the
 same commit as the change it describes.
 
+## 2.0.0-alpha2 - 2026-09-09
+### Changed
+
+- Follows the renamed application tier and the nested bundle namespaces.
+  `CoolMS\Entity\Doctrine\` is unchanged.
+- The "UNTESTED IN CI" notice is gone. It was stale, and stale in the direction
+  that matters: it understated coverage that exists, which is the kind of note a
+  reader acts on by writing a test that is already there.
+- Says which segment carries the module rather than which namespace it sits in.
+- Comments and docblocks are ascii; development-only files are export-ignored.
+
 ## 2.0.0-alpha1 - 2026-09-01
 
 **A pre-release. It carries no compatibility promise**, which is the honest
