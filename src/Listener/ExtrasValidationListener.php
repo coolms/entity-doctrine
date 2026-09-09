@@ -25,7 +25,7 @@ use InvalidArgumentException;
  *
  * Enforcement is OPT-IN per alias (`entity.extras_validation`), because
  * enforcing an alias rejects writes that succeeded before. See
- * {@see \CoolMS\EntityBundle\DependencyInjection\Configuration}.
+ * {@see \CoolMS\Entity\Bundle\DependencyInjection\Configuration}.
  *
  * `appliesTo` is honoured: a field scoped to a subset of instances is required
  * only of the instances it applies to. That is the difference between
