@@ -10,7 +10,7 @@ use CoolMS\Rql\RqlQuery;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Phase X-2.5b -- splits virtual-field filters off an RqlQuery,
+ * Splits virtual-field filters off an RqlQuery,
  * applies them to the QueryBuilder via `VirtualFieldFilterApplier`,
  * and returns a new RqlQuery with those filters removed.
  *

@@ -18,9 +18,15 @@ namespace CoolMS\Entity\Doctrine\Upsert\Platform;
  * - `INSERT IGNORE` is the dialect's insert-if-missing; it suppresses
  *   the duplicate-key error rather than skipping the row explicitly.
  *
- * UNTESTED IN CI: the project ships against PostgreSQL only. This
- * template follows the published MySQL reference; flag any downstream
- * issue back through the DQL Ship B follow-ups.
+ * NOT EXERCISED AGAINST A LIVE SERVER, which is narrower than it used to
+ * say. The generated SQL IS asserted in CI, string by string, by
+ * `PlatformUpsertSqlTest`. What no test covers is running it against a real
+ * MySQL server -- so a syntax error would be caught here and a semantic
+ * difference would not.
+ *
+ * The project itself ships against PostgreSQL, so that gap is not going to
+ * close here; a consumer pointing this at MySQL is the one who can close it.
+ * The template follows the published MySQL reference.
  */
 class MySQLPlatformUpsert extends AbstractPlatformUpsert
 {

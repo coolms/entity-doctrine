@@ -12,7 +12,7 @@ use ReflectionAttribute;
 use ReflectionClass;
 
 /**
- * `EntityAliasRegistryInterface` backed by `#[ClassMeta(alias:…)]`
+ * `EntityAliasRegistryInterface` backed by `#[ClassMeta(alias:...)]`
  * on Doctrine-registered entity classes.
  *
  * Discovery walks `getMetadataFactory()->getAllMetadata()` (the

@@ -86,10 +86,10 @@ interface PlatformSchemaManagerInterface
 
     /**
      * Whether a column already IN the database has the type this platform would
-     * declare for `$phpType` — i.e. whether a rebuild is unnecessary.
+     * declare for `$phpType` -- i.e. whether a rebuild is unnecessary.
      *
      * `$introspectedType` is the ORM's normalised name for the existing
-     * column's type (`float`, `text`, `decimal`, …), not raw SQL. Comparing raw
+     * column's type (`float`, `text`, `decimal`, ...), not raw SQL. Comparing raw
      * SQL text cannot work: this interface answers `INTEGER` where PostgreSQL
      * itself declares `INT`, so a string comparison would call every integer
      * column diverged and rebuild a STORED generated column on every save.
@@ -125,7 +125,7 @@ interface PlatformSchemaManagerInterface
      *
      * `$phpType` is always one of the field module's canonical data types, never a
      * widget name. Callers translate the widget word stored on a field definition
-     * first —
+     * first --
      * this method must never be handed `checkbox`, `number` or `date`, because
      * its `default` arm would answer TEXT for them and be indistinguishable
      * from a genuine text declaration.
@@ -145,7 +145,7 @@ interface PlatformSchemaManagerInterface
      * `money` exists as a separate type because a total stored as `float` is a
      * binary double: it cannot hold 0.1 exactly, and the error compounds over a
      * summed column. Every platform maps it to its own fixed-point type at
-     * scale **19,4** — the conventional money shape, and what SQL Server's own
+     * scale **19,4** -- the conventional money shape, and what SQL Server's own
      * MONEY uses. Four decimal places carry currency sub-units and unit rates.
      *
      * The scale is FIXED rather than read from `Definition::$precision`,

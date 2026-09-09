@@ -43,7 +43,7 @@ use ReflectionClass;
  *      (we seed the root with #[ORM\DiscriminatorMap(['root_value' => Root::class])])
  *   3. Fires the loadClassMetadata event (this listener)
  *   4. Calls findAbstractEntityClassesNotListedInDiscriminatorMap()
- *   5. Calls validateRuntimeMetadata() -- checks that $class->name ∈ $class->discriminatorMap
+ *   5. Calls validateRuntimeMetadata() -- checks that $class->name in $class->discriminatorMap
  *
  * For child classes, validateRuntimeMetadata() checks the CHILD's own metadata copy
  * (set at step 1), not the root's live map. So when a child fires at step 3, we must
