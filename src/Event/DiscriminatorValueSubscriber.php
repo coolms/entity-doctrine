@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace CoolMS\Entity\Doctrine\Event;
 
-use CoolMS\Entity\Doctrine\Attribute\DiscriminatorValue;
+use CoolMS\Entity\Attribute\DiscriminatorValue;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use ReflectionAttribute;
 use ReflectionClass;
 
 /**
@@ -126,7 +127,13 @@ class DiscriminatorValueSubscriber
     {
         /** @var class-string $className */
         $refClass = new ReflectionClass($className);
-        $attributes = $refClass->getAttributes(DiscriminatorValue::class);
+        // IS_INSTANCEOF, not the plain filter. MEASURED 2026-09-10: the plain
+        // filter does NOT resolve a class_alias -- a class still declaring
+        // #[CoolMS\Entity\Doctrine\Attribute\DiscriminatorValue] is NOT FOUND by a
+        // reader filtering on CoolMS\Entity\Attribute\DiscriminatorValue. With this
+        // flag it is. Remove the flag and every consumer on the old name goes
+        // silently unmapped -- DiscriminatorValueAliasTest fails if it goes.
+        $attributes = $refClass->getAttributes(DiscriminatorValue::class, ReflectionAttribute::IS_INSTANCEOF);
 
         return [] !== $attributes ? $attributes[0]->newInstance() : null;
     }

@@ -36,6 +36,9 @@
         "symfony/security-bundle": "^8.0",
         "symfony/uid": "^8.0"
     },
+    "conflict": {
+        "coolms/entity": "<=2.0.0-alpha2"
+    },
     "require-dev": {
         "phpunit/phpunit": "^12.5"
     },
