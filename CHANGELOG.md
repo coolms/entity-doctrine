@@ -10,6 +10,45 @@ major number means here.
 history when this file was created. Every entry after that is written in the
 same commit as the change it describes.
 
+## 2.0.0-alpha3 - 2026-09-10
+### Deprecated
+
+- `CoolMS\Entity\Doctrine\Attribute\DiscriminatorValue`. The class moved to
+  `CoolMS\Entity\Attribute\DiscriminatorValue` in `coolms/entity`; the old name
+  remains as an alias and keeps working.
+- The move is about inheritance. An attribute placed on an entity is acquired
+  by every subclass, so while the class lived here, a package declaring a
+  subclass required this ORM adapter merely to state its own discriminator
+  value -- and so did any third-party module extending such an entity. The
+  reader that acts on the attribute stays in this package, where the Doctrine
+  is.
+
+### Changed
+
+- `DiscriminatorValueSubscriber` matches the attribute with
+  `ReflectionAttribute::IS_INSTANCEOF` rather than the plain filter. This is
+  required, not cosmetic: an attribute is stored under the class name written
+  in the source, the plain filter compares that name exactly, and it therefore
+  does not resolve an alias. Measured -- a class declaring the old name is
+  invisible to a plain filter on the new one. Without the flag the alias above
+  would satisfy `class_exists()` and nothing else.
+- The flag has a second effect worth knowing. When the filter class is absent
+  altogether, the plain filter reports no attributes and raises nothing, so a
+  mis-ordered install would map no subclasses at all and say so nowhere;
+  `IS_INSTANCEOF` throws instead, at `loadClassMetadata`, on first boot.
+
+### Requires
+
+- `coolms/entity` 2.0.0-alpha3 or newer, because the attribute this package
+  reads now lives there. Expressed as `conflict: coolms/entity <=2.0.0-alpha2`
+  rather than a version floor: a floor naming an unreleased number refuses the
+  published alphas and then resolves a development branch that lacks the class
+  just the same, which is a constraint that looks strict and selects something
+  broken.
+- **That conflict entry is temporary.** It exists only while 2.0.0-alpha2 is
+  still resolvable as a sibling. Remove it once alpha3 is the floor across the
+  set, or it will sit here naming ancient history and reading as deliberate.
+
 ## 2.0.0-alpha2 - 2026-09-09
 ### Changed
 
