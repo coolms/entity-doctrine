@@ -8,6 +8,22 @@
 Doctrine ORM/DBAL adapters for [`coolms/entity`](https://packagist.org/packages/coolms/entity).
 Provides the virtual package `coolms/entity-persistence-implementation`.
 
+> ⚠️ **`provide` is a placeholder, as of 2026-09-16.** Declared; read by
+> Composer's resolver alone, when `coolms/entity-application` asks for the
+> virtual name (a consumer must name this package -- Composer will not pick a
+> provider by itself); read by no code. No selector exists and no second adapter
+> exists: Doctrine is the only persistence today, and a second (Cycle, or an
+> in-house ORM) is intended rather than planned. And for THIS family the manifest
+> promises more than the code keeps: `coolms/entity-bundle` imports eleven classes
+> of this package by name -- in its DI extension and two compiler passes -- so
+> providing the same virtual name would not be enough to substitute; the bundle
+> would have to change with it. The line becomes live when a second adapter
+> exists AND the wiring moves into the adapter, the way `coolms/core-doctrine`
+> ships its own bundle and `coolms/core-bundle` imports nothing of it. Until then
+> the true property of this package is narrower and still worth having:
+> `coolms/entity` itself imports no `Doctrine\ORM\` or `Doctrine\DBAL\` class, so
+> replacing the ORM would not touch the domain.
+
 - `Mapping\ExtrasFieldMappingDriver` -- decorates the central metadata driver to
   surface generated `v_{name}` virtual columns, so extras fields are filterable
   and sortable through an index rather than a JSON scan. Uses a DBAL connection
