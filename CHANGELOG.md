@@ -14,6 +14,10 @@ same commit as the change it describes.
 
 ### Added
 
+- Declares `support` -- `issues` and `source` -- so a page imported from this
+  package, and the catalogue, know where a correction is filed. Packagist filled
+  the gap from GitHub when the manifest was silent; the declared field is the
+  one that holds on any registry.
 Tests the application had been carrying for this package since the code
 moved here: `MySQLPlatformSchemaManagerTest`, `PostgreSQLPlatformSchemaManagerTest`, `SQLitePlatformSchemaManagerTest`, `DiscriminatorValueAliasTest`. Nothing under `src/` changes.
 
