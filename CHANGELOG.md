@@ -10,6 +10,13 @@ major number means here.
 history when this file was created. Every entry after that is written in the
 same commit as the change it describes.
 
+## Unreleased
+
+### Added
+
+Tests the application had been carrying for this package since the code
+moved here: `MySQLPlatformSchemaManagerTest`, `PostgreSQLPlatformSchemaManagerTest`, `SQLitePlatformSchemaManagerTest`, `DiscriminatorValueAliasTest`. Nothing under `src/` changes.
+
 ## 2.0.0-alpha3 - 2026-09-10
 ### Deprecated
 
