@@ -12,19 +12,25 @@ same commit as the change it describes.
 
 ## Unreleased
 
-### Removed
+### Changed
+
+- `Listener\ExtrasSchemaCacheInvalidatorListener` no longer carries
+  `#[AsDoctrineListener]`, so it no longer runs on every persist, update and
+  remove of an `ExtrasProviderInterface` entity. What it called had no effect a
+  reader could see; what it did do was drop live Doctrine metadata in the middle
+  of a flush.
+
+### Deprecated
 
 - `Cache\ExtrasSchemaCacheInvalidator` and
-  `Listener\ExtrasSchemaCacheInvalidatorListener`. The listener ran on every
-  persist, update and remove of an `ExtrasProviderInterface` entity, and none of
-  the invalidator's four operations had a reader: it deleted a metadata-cache
-  key under a name Doctrine does not use (and the warmed production metadata
-  cache cannot delete at all), invalidated `dynamic_schema_*` tags that nothing
-  writes, deleted an API Platform key from a pool that does not hold it, and
-  reset runtime metadata that is never built from field definitions. The one
-  thing it did do was drop live metadata in the middle of a flush. There is no
-  replacement, because there was no effect to replace; an application that
-  registered the listener itself should drop that registration.
+  `Listener\ExtrasSchemaCacheInvalidatorListener`, with no replacement. None of
+  the invalidator's four operations has a reader: it deletes a metadata-cache key
+  under a name Doctrine does not use (and the warmed production metadata cache
+  cannot delete at all), invalidates `dynamic_schema_*` tags that nothing
+  writes, deletes an API Platform key from a pool that does not hold it, and
+  resets runtime metadata that is never built from field definitions. Both
+  classes keep working and emit a deprecation notice when used; they are
+  removed at the next generation boundary.
 
 ### Added
 
