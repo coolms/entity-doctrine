@@ -12,6 +12,20 @@ same commit as the change it describes.
 
 ## Unreleased
 
+### Removed
+
+- `Cache\ExtrasSchemaCacheInvalidator` and
+  `Listener\ExtrasSchemaCacheInvalidatorListener`. The listener ran on every
+  persist, update and remove of an `ExtrasProviderInterface` entity, and none of
+  the invalidator's four operations had a reader: it deleted a metadata-cache
+  key under a name Doctrine does not use (and the warmed production metadata
+  cache cannot delete at all), invalidated `dynamic_schema_*` tags that nothing
+  writes, deleted an API Platform key from a pool that does not hold it, and
+  reset runtime metadata that is never built from field definitions. The one
+  thing it did do was drop live metadata in the middle of a flush. There is no
+  replacement, because there was no effect to replace; an application that
+  registered the listener itself should drop that registration.
+
 ### Added
 
 - README: `provide` is documented as a PLACEHOLDER, dated -- read by Composer
