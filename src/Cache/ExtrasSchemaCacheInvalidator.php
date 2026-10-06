@@ -13,6 +13,14 @@ use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\Cache\Adapter\TagAwareAdapterInterface;
 
+/**
+ * @deprecated since 2026-09-24, with no replacement: none of its four operations
+ *             has a reader. It deletes a metadata-cache key under a name Doctrine
+ *             does not use, invalidates `dynamic_schema_*` tags nothing writes,
+ *             deletes an API Platform key from a pool that does not hold it, and
+ *             resets runtime metadata that is never built from field definitions.
+ *             Its listener no longer runs. Removed at the next generation boundary.
+ */
 readonly class ExtrasSchemaCacheInvalidator
 {
     public function __construct(
@@ -43,6 +51,11 @@ readonly class ExtrasSchemaCacheInvalidator
      */
     public function invalidateByClassName(string $className): void
     {
+        @trigger_error(
+            'CoolMS\\Entity\\Doctrine\\Cache\\ExtrasSchemaCacheInvalidator is deprecated since 2026-09-24: none of its four operations has a reader, and its listener no longer runs; it is removed at the next generation boundary.',
+            E_USER_DEPRECATED,
+        );
+
         // DynamicRecord and other Runtime-mode entities are not registered in the
         // alias registry -- they have no schema cache to invalidate. Skip silently.
         // Only Extension-mode entities (PHP class + registered alias) need cache busting.
