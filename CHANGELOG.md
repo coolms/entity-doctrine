@@ -10,6 +10,13 @@ Versioning is described in the [CoolMS contributing guide](https://github.com/co
 history when this file was created. Every entry after that is written in the
 same commit as the change it describes.
 
+## Unreleased
+
+### Removed
+
+- `Event\DeferredFlushSubscriber`: the end-of-request flush for the deferred-flush mode, which coolms/core-doctrine
+  removed (`save()` and `delete()` always flush; a unit of work's owner decides the commit).
+
 ## 2.0.0-alpha4 - 2026-10-07
 
 ### Added
