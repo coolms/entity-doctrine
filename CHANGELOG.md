@@ -12,10 +12,11 @@ same commit as the change it describes.
 
 ## Unreleased
 
-### Removed
+### Changed
 
-- `Event\DeferredFlushSubscriber`: the end-of-request flush for the deferred-flush mode, which coolms/core-doctrine
-  removed (`save()` and `delete()` always flush; a unit of work's owner decides the commit).
+- `Event\DeferredFlushSubscriber` is kept (its removal was reverted): it flushes every open manager at the end of a
+  request or command whatever any mode says, and code that persists without flushing relies on that while an
+  application runs without a unit-of-work owner. Its docblock now says so.
 
 ## 2.0.0-alpha4 - 2026-10-07
 
